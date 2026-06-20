@@ -1,0 +1,34 @@
+services:
+  app:
+    build: . 
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - cache
+  
+  db: 
+    image: postgres
+    
+    environment: 
+
+      POSTGRES_USER: mikey
+      POSTGRES_PASSWORD: mikeysama
+      POSTGRES_DB: zenza
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+        
+
+  cache:
+    image: redis
+    ports:
+      - "6379:6379"
+
+
+volumes: 
+  postgres_data:
+
+
+  
